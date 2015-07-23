@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery-1.11.2.js" > </script>
+<script type="text/javascript">
+$(document).ready( function() {
+  var uid = document.getElementById("uid").value;
+  $("#uid").focusout( function(){
+	var uid = document.getElementById("uid").value;
+	$.post("login", {userId:uid, auth:'true'}, function(data, status){
+		var result = $.trim(data);
+			if( result === 'AlreadyExist'){
+				alert("User Id already exist");
+				$("#uid").val('');
+				$("#uid").focus();
+			}
+		})
+})
+});
+</script>
+</head>
+<body>
+
+<form action="reg" method="POST"><br>
+User ID :  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="userId" id="uid"><br> <br> 
+Password : &nbsp&nbsp&nbsp&nbsp<input type="password" name="pass"><br><br> 
+Re-Enter : &nbsp&nbsp&nbsp&nbsp <input type="password" name="repass"><br><br> 
+First Name :&nbsp&nbsp&nbsp<input type="text" name="fName"><br><br> 
+Last Name :&nbsp&nbsp&nbsp<input type="text" name="lName"><br><br> 
+Gender :   &nbsp&nbsp&nbsp&nbsp&nbsp Male <input type="radio" name="sex" value="m"> Female <input type="radio" name="sex" value="f"><br><br> 
+Age    :  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text"  name="age"/><br><br> 
+Address :  &nbsp&nbsp&nbsp&nbsp&nbsp <input type="text"  name="address"/><br><br> 
+Ph Number :&nbsp&nbsp<input type="text" name="phoneNum"><br><br> 
+<input type="submit" value="Register">
+</form>
+</body>
+</html>

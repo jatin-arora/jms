@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery-1.11.2.js">></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	$("#button").click(function() {
+		send();
+	});
+
+	function send(){
+		var text = document.getElementById('text').value;
+		var op = document.getElementById('op').value;
+		$.get("msg", {msg:text, op:op}, function(data, status){
+
+			
+		})
+	}
+
+	function recieve(){
+
+		$.ajax({
+		    url : "pass3",
+		    type : "get",
+		    async: true,
+		    success : function(data) {
+		    	var text = $("#id").html();
+				$("#id").html(text+"<br>"+data);
+				setTimeout(recieve, 5000);
+		    }
+		 });
+		
+	}
+	recieve();
+	
+});
+
+</script>
+</head>
+<body>
+	<select id="op">
+		<option value="cisco">Cisco</option>
+		<option value="cisco1">Cisco1</option>
+	</select>
+	<input type="text" name="msg" id='text'>
+	<input type="button" id="button" value="Send">
+
+	<h1 id="id"></h1>
+
+
+
+
+</body>
+</html>

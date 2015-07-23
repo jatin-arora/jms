@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.jeet.com/api"
+	xmlns:tns="http://www.jeet.com/api" elementFormDefault="qualified">
+	<element name="userId" type="string" />
+	<element name="login">
+		<complexType>
+			<sequence>
+				<element ref="tns:userId" />
+				<element name="password" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="user">
+		<complexType>
+			<sequence>
+				<element ref="tns:userId" />
+				<element name="firstName" type="string" />
+				<element name="lastName" type="string" />
+				<element name="gender" type="string" />
+				<element name="age" type="int" />
+				<element name="address" type="string" />
+				<element name="phoneNumber" type="int" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="pipe">
+		<complexType>
+			<sequence>
+				<element name="pipeName" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="userPipe">
+		<complexType>
+			<sequence>
+				<element ref="tns:userId" />
+				<element ref="tns:pipe" />
+			</sequence>
+		</complexType>
+	</element>
+</schema>

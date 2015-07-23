@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery-1.11.2.js" > </script>
+<script type="text/javascript">
+$(document).ready( function() {
+  
+ $("#pid").focusout( function(){
+	var uid =$("#uid").val();
+	var pid =$("#pid").val();
+	$.post("login", {userId:uid, password:pid, validate:'true'}, function(data, status){
+		var result = $.trim(data);
+			if( result === 'Invalid'){
+				alert("Invalid userId or password");
+				$("#uid").val('');
+				$("#pid").val('');
+				$("#uid").focus();
+			}
+		})
+}) 
+});
+</script>
+</head>
+<body>
+
+<form action="login" method="Post">
+<br><br>User Id : &nbsp&nbsp&nbsp&nbsp<input type="text" name="userId" id="uid"/> <br><br>
+Password  : <input type="text" name="password" id="pid"/> <br><br>
+
+<input type="submit" value="Login">&nbsp&nbsp&nbsp&nbsp<a href="register.html"> Register</a>
+</form>
+
+</body>
+</html>
